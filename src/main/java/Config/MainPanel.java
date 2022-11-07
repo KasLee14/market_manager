@@ -7,7 +7,7 @@ public class MainPanel extends JPanel {
     public MainPanel(int width, int height){
         setSize(width, height);
         setLayout(null);
-        setLocation(500, 600);
+        setLocation(300, 100);
         setVisible(true);
     }
 }

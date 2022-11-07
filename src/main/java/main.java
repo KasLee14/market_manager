@@ -7,15 +7,19 @@ import java.awt.event.ActionListener;
 public class main {
 
     public static JFrame jFrame;
-    public static JPanel jPanel;
+    public static JPanel jPanel_MainGUI;
 
-    public static void main(String[] args){
-
-        jFrame = new MainFrame("主界面", 1600, 900);
-        AllAction.getJFrame(jFrame);
+    public static void initializeGUI(){
+        jFrame = new MainFrame("商场管理系统", 1600, 900);
+        jPanel_MainGUI = new MainPanel(1600,900);
 
         JButton b1 = new Button("test", new AllAction());
-        jFrame.add(b1);
+        jPanel_MainGUI.add(b1);
+        jFrame.add(jPanel_MainGUI);
+    }
+
+    public static void main(String[] args){
+        initializeGUI();
 
 
     }
