@@ -17,6 +17,7 @@ public class SuperMarketInfoAction implements ActionListener{
     public static JFrame menuFrame;
     private JTable show_info;
 
+    private SupermarketService supermarketService = new SupermarketService();//想了想还是不要用静态类，先实例化再用
     @Override
     public void actionPerformed(ActionEvent e){
 
@@ -24,7 +25,7 @@ public class SuperMarketInfoAction implements ActionListener{
         menuFrame = new MainFrame("商场管理界面");
         JPanel menuPanel = new MainPanel();
 
-        List<Supermarket> supermarkets = SupermarketService.selectAll();
+        List<Supermarket> supermarkets = supermarketService.selectAll();
 
 
         // 表格所有行数据
