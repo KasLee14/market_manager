@@ -15,6 +15,8 @@ public class SuperMarketInsertAction implements ActionListener {
 
     public static JFrame menuFrame;
 
+    private SupermarketService supermarketService = new SupermarketService();//想了想还是不要用静态类，先实例化再用
+
     @Override
     public void actionPerformed(ActionEvent e){
 
@@ -39,7 +41,7 @@ public class SuperMarketInsertAction implements ActionListener {
                 try{
                     System.out.println("start insert");
                     Supermarket neo_supermarket = new Supermarket(supermarketId.getText(), supermarketName.getText(), address.getText(), contactNumber.getText());
-                    SupermarketService.insert(neo_supermarket);
+                    supermarketService.insert(neo_supermarket);
                     System.out.println("close insert");
                     menuFrame.dispose();
                 }catch (Exception E){}

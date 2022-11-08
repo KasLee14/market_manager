@@ -9,21 +9,21 @@ import org.apache.ibatis.session.SqlSession;
 import java.util.List;
 
 public class EmpService {
-    private static SqlSession sqlSession = null;
-    private static EmpMapper empMapper = null;
+    private SqlSession sqlSession = null;
+    private EmpMapper empMapper = null;
 
-    private static void start(){
+    private void start(){
         sqlSession = SqlSessionUtil.openSession();
         empMapper = sqlSession.getMapper(EmpMapper.class);
     }
 
-    private static void end(){
+    private void end(){
         SqlSessionUtil.close(sqlSession);
         sqlSession = null;
         empMapper = null;
     }
 
-    public static Emp selectName(String name){
+    public Emp selectName(String name){
         start();
         EmpExample empExample = new EmpExample();
         EmpExample.Criteria criteria = empExample.createCriteria();
@@ -33,21 +33,21 @@ public class EmpService {
         return emps.get(0);
     }
 
-    public static Emp selectById(String Id) {
+    public Emp selectById(String Id) {
         start();
         Emp emp = empMapper.selectByPrimaryKey(Id);
         end();
         return emp;
     }
 
-    public static List<Emp> selectAll(){
+    public List<Emp> selectAll(){
         start();
         List<Emp> emps = empMapper.selectByExample(null);
         end();
         return emps;
     }
 
-    public static List<Emp> selectByDeptId(String Id){
+    public  List<Emp> selectByDeptId(String Id){
         start();
         EmpExample empExample = new EmpExample();
         EmpExample.Criteria criteria = empExample.createCriteria();
@@ -57,21 +57,21 @@ public class EmpService {
         return emps;
     }
 
-    public static void insert(Emp emp) throws Exception {
+    public void insert(Emp emp) throws Exception {
         start();
         empMapper.insert(emp);
         sqlSession.commit();
         end();
     }
 
-    public static void update(Emp emp) throws Exception {
+    public void update(Emp emp) throws Exception {
         start();
         empMapper.updateByPrimaryKey(emp);
         sqlSession.commit();
         end();
     }
 
-    public static void deleteById(String Id) throws Exception {
+    public void deleteById(String Id) throws Exception {
         start();
         empMapper.deleteByPrimaryKey(Id);
         sqlSession.commit();
