@@ -1,41 +1,28 @@
 
 
+import lan.pojo.Supermarket;
+import lan.service.SupermarketService;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 public class test {
 
     public static void main(String[] args) {
-        JFrame jf = new JFrame("测试窗口");
-        jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        JFrame f=new JFrame("文本框加入面板");
+        JPanel jp = new JPanel();
+        JTextField jt = new JTextField(10);
 
-        // 创建内容面板，使用边界布局
-        JPanel panel = new JPanel(new BorderLayout());
+        f.setBounds(400,400,500,500); //设置窗口位置大小
+        jp.setSize(200,200);                //设置面板大小
+        jt.setSize(100,100);                //设置文本框大小
 
-        // 表头（列名）
-        Object[] columnNames = {"姓名", "语文", "数学", "英语", "总分"};
+        jp.add(jt);                         //将文本框加入到面板
+        f.add(jp);
 
-        // 表格所有行数据
-        Object[][] rowData = {
-                {"张三", 80, 80, 80, 240},
-                {"John", 70, 80, 90, 240},
-                {"Sue", 70, 70, 70, 210},
-                {"Jane", 80, 70, 60, 210},
-                {"Joe", 80, 70, 60, 210}
-        };
-
-        // 创建一个表格，指定 所有行数据 和 表头
-        JTable table = new JTable(rowData, columnNames);
-
-        // 把 表头 添加到容器顶部（使用普通的中间容器添加表格时，表头 和 内容 需要分开添加）
-        panel.add(table.getTableHeader(), BorderLayout.NORTH);
-        // 把 表格内容 添加到容器中心
-        panel.add(table, BorderLayout.CENTER);
-
-        jf.setContentPane(panel);
-        jf.pack();
-        jf.setLocationRelativeTo(null);
-        jf.setVisible(true);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setVisible(true);
     }
 
 }

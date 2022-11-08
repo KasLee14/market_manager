@@ -8,12 +8,12 @@ import java.awt.*;
 
 public class MainFrame extends JFrame{
 
-    public MainFrame(String name, int width, int height){
+    public MainFrame(String name){
         setTitle(name);
-        setPreferredSize(new Dimension(width,height));
+        setPreferredSize(new Dimension(1080,960));
         pack();
         setLayout(null);
-        setLocation(300, 100);
+        setLocationRelativeTo(null);
         setVisible(true);
 
     }
