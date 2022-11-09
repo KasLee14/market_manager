@@ -1,9 +1,6 @@
-package Action;
+package Action.SuperMarket;
 
 import javax.swing.*;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableRowSorter;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -56,12 +53,14 @@ public class SuperMarketInfoAction implements ActionListener{
 //        menuPanel.add(bg);
 
         Neo_Button b1 = new Neo_Button("增加商场信息", new SuperMarketInsertAction());
-        b1.setBounds(0,0,150,50);
+        b1.setBounds(25,100,150,50);
         b1.setFocusPainted(false);
+        menuPanel.add(b1);
 
         Neo_Button b2 = new Neo_Button("删除商场信息", new SuperMarketDeleteAction());
-        b2.setBounds(200,0,150,50);
+        b2.setBounds(200,100,150,50);
         b2.setFocusPainted(false);
+        menuPanel.add(b2);
 
         //刷新界面
         Neo_Button b3 = new Neo_Button("刷新", new ActionListener() {
@@ -69,7 +68,7 @@ public class SuperMarketInfoAction implements ActionListener{
             public void actionPerformed(ActionEvent e) {
                 menuPanel.remove(show_info);
                 menuPanel.remove(scroll);
-                List<Supermarket> supermarkets = SupermarketService.selectAll();
+                List<Supermarket> supermarkets = supermarketService.selectAll();
 
 
                 // 表格所有行数据
@@ -93,12 +92,42 @@ public class SuperMarketInfoAction implements ActionListener{
 
             }
         });
-        b3.setBounds(400,0,150,50);
+        b3.setBounds(375,100,150,50);
         b3.setFocusPainted(false);
-
-        menuPanel.add(b1);
-        menuPanel.add(b2);
         menuPanel.add(b3);
+
+        Neo_Button b4 = new Neo_Button("查找商场信息", new SuperMarketSearchAction());
+        b4.setBounds(550,100,150,50);
+        b4.setFocusPainted(false);
+        menuPanel.add(b4);
+
+        Neo_Button b5 = new Neo_Button("修改商场信息", new SuperMarketUpdateAction());
+        b5.setBounds(725,100,150,50);
+        b5.setFocusPainted(false);
+        menuPanel.add(b5);
+
+        Neo_Button b6 = new Neo_Button("返回", new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuFrame.dispose();
+            }
+
+        });
+        b6.setBounds(900,100,150,50);
+        b6.setFocusPainted(false);
+        menuPanel.add(b6);
+
+        Neo_Button b7 = new Neo_Button("退出程序", new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        b7.setBounds(900, 800,150,50);
+        b7.setFocusPainted(false);
+        menuPanel.add(b7);
 
         menuFrame.setContentPane(menuPanel);
 

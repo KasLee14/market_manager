@@ -1,8 +1,6 @@
-package Action;
+package Action.SuperMarket;
 
-import Config.MainFrame;
-import Config.MainPanel;
-import Config.Neo_Button;
+import Config.*;
 import lan.pojo.Supermarket;
 import lan.service.SupermarketService;
 
@@ -21,8 +19,7 @@ public class SuperMarketInsertAction implements ActionListener {
     public void actionPerformed(ActionEvent e){
 
         System.out.println("insert market info");
-        menuFrame = new MainFrame("添加商场信息");
-        menuFrame.setSize(300,200);
+        menuFrame = new MinorFrame("添加商场信息");
         JPanel menuPanel = new MainPanel();
         menuPanel.setSize(300,200);
 
@@ -39,10 +36,10 @@ public class SuperMarketInsertAction implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
-                    System.out.println("start insert");
+                    System.out.println("start inserting");
                     Supermarket neo_supermarket = new Supermarket(supermarketId.getText(), supermarketName.getText(), address.getText(), contactNumber.getText());
                     supermarketService.insert(neo_supermarket);
-                    System.out.println("close insert");
+                    System.out.println("close inserting");
                     menuFrame.dispose();
                 }catch (Exception E){}
 

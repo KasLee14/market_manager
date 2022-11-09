@@ -10,6 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class SupermarketService {
+
     private SqlSession sqlSession = null;
     private SupermarketMapper supermarketMapper = null;
 
