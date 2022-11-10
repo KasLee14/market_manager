@@ -28,10 +28,23 @@ public class SuperMarketDeleteAction implements ActionListener{
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
-                    System.out.println("start supermarket deleting");
-                    supermarketService.deleteById(deleteID.getText());
-                    System.out.println("close supermarket deleting");
-                    menuFrame.dispose();
+                    if(supermarketService.selectById(deleteID.getText()) != null){
+                        System.out.println("start supermarket deleting");
+                        supermarketService.deleteById(deleteID.getText());
+                        System.out.println("close supermarket deleting");
+                        menuFrame.dispose();
+                    }
+                    else{
+                        menuFrame.dispose();
+                        menuFrame = new MinorFrame("查询结果显示");
+                        JPanel menuPanel = new MainPanel();
+                        menuPanel.setSize(300,200);
+                        RemaindLabel errorMessage = new RemaindLabel("该商场不存在");
+                        menuPanel.add(errorMessage);
+                        menuFrame.setContentPane(menuPanel);
+                        System.out.println("error searching");
+                    }
+
                 }catch (Exception E){}
 
             }

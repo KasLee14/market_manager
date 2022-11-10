@@ -70,6 +70,10 @@ public class SuperMarketUpdateAction implements ActionListener {
 
                     }
                     else{
+                        menuFrame.dispose();
+                        menuFrame = new MinorFrame("查询结果显示");
+                        JPanel menuPanel = new MainPanel();
+                        menuPanel.setSize(300,200);
                         RemaindLabel errorMessage = new RemaindLabel("该商场不存在");
                         menuPanel.add(errorMessage);
                         menuFrame.setContentPane(menuPanel);

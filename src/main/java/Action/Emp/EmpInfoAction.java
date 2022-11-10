@@ -4,7 +4,9 @@ import Config.MainFrame;
 import Config.MainPanel;
 import Config.Neo_Button;
 import lan.pojo.Dept;
+import lan.pojo.Emp;
 import lan.service.DeptService;
+import lan.service.EmpService;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -16,31 +18,32 @@ public class EmpInfoAction implements ActionListener{
     public static JFrame menuFrame;
     private JTable show_info;
 
-    private DeptService deptService = new DeptService();
+    private EmpService empService = new EmpService();
 
     @Override
     public void actionPerformed(ActionEvent e){
 
-        System.out.println("market info");
-        menuFrame = new MainFrame("商场管理界面");
+        System.out.println("emp info");
+        menuFrame = new MainFrame("职员管理界面");
         JPanel menuPanel = new MainPanel();
 
-        List<Dept> departments = deptService.selectAll();
+        List<Emp> emps = empService.selectAll();
 
 
         // 表格所有行数据
-        Object[][] rowData = new Object[departments.size()][];
-        for(int i = 0; i < departments.size(); i++){
-            Object[]temp = new Object[5];
-            Dept department = departments.get(i);
-            temp[0] = department.getDeptId();
-            temp[1] = department.getDeptName();
-            temp[2] = department.getAddress();
-            temp[3] = department.getContactNumber();
-            temp[4] = department.getSupermarketId();
+        Object[][] rowData = new Object[emps.size()][];
+        for(int i = 0; i < emps.size(); i++){
+            Object[]temp = new Object[6];
+            Emp emp = emps.get(i);
+            temp[0] = emp.getEmpId();
+            temp[1] = emp.getEmpName();
+            temp[2] = emp.getPost();
+            temp[3] = emp.getPhoneNumber();
+            temp[4] = emp.getSalary();
+            temp[5] = emp.getDeptId();
             rowData[i] = temp;
         }
-        Object[] columnNames = {"DeptId", "DeptName", "Address", "ContactNumber", "SupermarketID"};
+        Object[] columnNames = {"EmptId", "EmpName", "Post", "PhoneNumber", "Salary" ,"DeptID"};
         show_info = new JTable(rowData,columnNames);
 
 //        show_info.setBackground(Color.white);
@@ -56,12 +59,12 @@ public class EmpInfoAction implements ActionListener{
 //        bg.setBounds(0,0,bg_img.getIconWidth(), bg_img.getIconHeight());
 //        menuPanel.add(bg);
 
-        Neo_Button b1 = new Neo_Button("增加部门信息", new EmpInsertAction());
+        Neo_Button b1 = new Neo_Button("增加职工信息", new EmpInsertAction());
         b1.setBounds(25,100,150,50);
         b1.setFocusPainted(false);
         menuPanel.add(b1);
 
-        Neo_Button b2 = new Neo_Button("删除部门信息", new EmpDeleteAction());
+        Neo_Button b2 = new Neo_Button("删除职工信息", new EmpDeleteAction());
         b2.setBounds(200,100,150,50);
         b2.setFocusPainted(false);
         menuPanel.add(b2);
@@ -72,21 +75,22 @@ public class EmpInfoAction implements ActionListener{
             public void actionPerformed(ActionEvent e) {
                 menuPanel.remove(show_info);
                 menuPanel.remove(scroll);
-                List<Dept> departments = deptService.selectAll();
+                List<Emp> emps = empService.selectAll();
 
                 // 表格所有行数据
-                Object[][] rowData = new Object[departments.size()][];
-                for(int i = 0; i < departments.size(); i++){
-                    Object[]temp = new Object[5];
-                    Dept department = departments.get(i);
-                    temp[0] = department.getDeptId();
-                    temp[1] = department.getDeptName();
-                    temp[2] = department.getAddress();
-                    temp[3] = department.getContactNumber();
-                    temp[4] = department.getSupermarketId();
+                Object[][] rowData = new Object[emps.size()][];
+                for(int i = 0; i < emps.size(); i++){
+                    Object[]temp = new Object[6];
+                    Emp emp = emps.get(i);
+                    temp[0] = emp.getEmpId();
+                    temp[1] = emp.getEmpName();
+                    temp[2] = emp.getPost();
+                    temp[3] = emp.getPhoneNumber();
+                    temp[4] = emp.getSalary();
+                    temp[5] = emp.getDeptId();
                     rowData[i] = temp;
                 }
-                Object[] columnNames = {"DeptId", "DeptName", "Location", "ContactNumber", "SupermarketID"};
+                Object[] columnNames = {"EmptId", "EmpName", "Post", "PhoneNumber", "Salary" ,"DeptID"};
                 show_info = new JTable(rowData,columnNames);
 
 //        show_info.setBackground(Color.white);
@@ -100,12 +104,12 @@ public class EmpInfoAction implements ActionListener{
         b3.setFocusPainted(false);
         menuPanel.add(b3);
 
-        Neo_Button b4 = new Neo_Button("查找部门信息", new EmpSearchAction());
+        Neo_Button b4 = new Neo_Button("查找职工信息", new EmpSearchAction());
         b4.setBounds(550,100,150,50);
         b4.setFocusPainted(false);
         menuPanel.add(b4);
 
-        Neo_Button b5 = new Neo_Button("修改部门信息", new EmpUpdateAction());
+        Neo_Button b5 = new Neo_Button("修改职工信息", new EmpUpdateAction());
         b5.setBounds(725,100,150,50);
         b5.setFocusPainted(false);
         menuPanel.add(b5);

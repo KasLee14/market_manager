@@ -51,7 +51,7 @@ public class DeptSearchAction implements ActionListener {
                         rowData[0][2] = SearchObject.getAddress();
                         rowData[0][3] = SearchObject.getContactNumber();
                         rowData[0][4] = SearchObject.getSupermarketId();
-                        Object[] columnNames = {"DeptId", "DepttName", "Address", "ContactNumber", "SupermarketId"};
+                        Object[] columnNames = {"DeptId", "DeptName", "Address", "ContactNumber", "SupermarketId"};
                         show_info = new JTable(rowData,columnNames);
 
 //        show_info.setBackground(Color.white);

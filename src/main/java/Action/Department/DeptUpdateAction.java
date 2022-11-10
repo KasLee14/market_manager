@@ -43,8 +43,8 @@ public class DeptUpdateAction implements ActionListener {
                         JPanel menuPanel = new MainPanel();
                         menuPanel.setSize(300,200);
 
-                        JTextField supermarketName = new JTextField("请输入新部门名");
-                        supermarketName.setBounds(50,50,100,25);
+                        JTextField deptName = new JTextField("请输入新部门名");
+                        deptName.setBounds(50,50,100,25);
                         JTextField address = new JTextField("请输入新地点");
                         address.setBounds(50,80,100,25);
                         JTextField contactNumber = new JTextField("请输入新联系方式");
@@ -54,7 +54,7 @@ public class DeptUpdateAction implements ActionListener {
                             @Override
                             public void actionPerformed(ActionEvent e) {
                                 try{
-                                    Dept neo_dept = new Dept(SearchObject.getDeptId(), supermarketName.getText(), address.getText(), contactNumber.getText(),SearchObject.getSupermarketId());
+                                    Dept neo_dept = new Dept(SearchObject.getDeptId(), deptName.getText(), address.getText(), contactNumber.getText(),SearchObject.getSupermarketId());
                                     deptService.update(neo_dept);
                                     menuFrame.dispose();
                                 }catch (Exception E){}
@@ -63,7 +63,7 @@ public class DeptUpdateAction implements ActionListener {
                         btn.setBounds(170,70,100,50);
                         btn.setFocusPainted(false);
 
-                        menuPanel.add(supermarketName);
+                        menuPanel.add(deptName);
                         menuPanel.add(address);
                         menuPanel.add(contactNumber);
                         menuPanel.add(btn);
@@ -72,7 +72,11 @@ public class DeptUpdateAction implements ActionListener {
 
                     }
                     else{
-                        RemaindLabel errorMessage = new RemaindLabel("该商场不存在");
+                        menuFrame.dispose();
+                        menuFrame = new MinorFrame("查询结果显示");
+                        JPanel menuPanel = new MainPanel();
+                        menuPanel.setSize(300,200);
+                        RemaindLabel errorMessage = new RemaindLabel("该部门不存在");
                         menuPanel.add(errorMessage);
                         menuFrame.setContentPane(menuPanel);
                         System.out.println("error updating");
